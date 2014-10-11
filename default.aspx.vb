@@ -5,10 +5,20 @@ Partial Class _Default
     Inherits System.Web.UI.Page
     'Adapted from the loan calculator found at www.dreamincode.net/forums/topic/237228-looping-issues-using-a-grid-for-mortgage-calculator-amortization/
     Protected Sub btnCalcPmt_Click(sender As Object, e As EventArgs) Handles btnCalcPmt.Click
+
+        'Make monthly payment and grid visible, in case clear button was clicked.
+        loanGridView.Visible = True
+        lblMonthlyPmt.Visible = True
+
+        'User-provided
         Dim loanAmount As Double
+        'User-provided
         Dim annualRate As Double
+        'Monthly interest rate
         Dim interestRate As Double
+        'User-provided
         Dim term As Integer
+        'Loan term in months
         Dim loanTerm As Integer
         Dim monthlyPayment As Double
 
@@ -16,6 +26,8 @@ Partial Class _Default
         Dim interestPaid As Double
         Dim nBalance As Double
         Dim principal As Double
+        Dim paymentDate As Date
+        Dim newDate As Date = Today
 
         'Declaring a table to hold the payment information.
         Dim table As DataTable = New DataTable("ParentTable")
@@ -50,7 +62,8 @@ Partial Class _Default
         loanAmortTbl.Columns.Add("Payment Number", System.Type.GetType("System.String"))
         loanAmortTbl.Columns.Add("Principal Paid", System.Type.GetType("System.String"))
         loanAmortTbl.Columns.Add("Interest Paid", System.Type.GetType("System.String"))
-
+        loanAmortTbl.Columns.Add("Payment Date", System.Type.GetType("System.String"))
+        loanAmortTbl.Columns.Add("New Balance", System.Type.GetType("System.String"))
 
         'This section uses the for loop to display the loan balance and interest paid over the term of the loan.
         Dim counterStart As Integer
@@ -62,12 +75,17 @@ Partial Class _Default
             principal = monthlyPayment - interestPaid
             nBalance = loanAmount - principal
             loanAmount = nBalance
+            paymentDate = newDate.AddDays(1)
+            newDate = paymentDate
+
 
             'Writes the data to a new row in the gridview.
             tRow = loanAmortTbl.NewRow()
             tRow("Payment Number") = String.Format(counterStart)
             tRow("Principal Paid") = String.Format("{0:C}", principal) ' String.Format("{0:C},principal) formats the variable "prinicpal" as currency (C).
             tRow("Interest Paid") = String.Format("{0:C}", interestPaid)
+            tRow("Payment Date") = paymentDate.ToString("d")
+            tRow("New Balance") = String.Format("{0:C}", nBalance)
             loanAmortTbl.Rows.Add(tRow)
 
             'Loops to next counterStart (Continues loop until counterStart requirements are met (loanTerm)).
@@ -77,6 +95,19 @@ Partial Class _Default
         loanGridView.DataSource = loanAmortTbl
         loanGridView.DataBind()
 
+
+    End Sub
+
+    Protected Sub btn_Clear_Click(sender As Object, e As EventArgs) Handles btn_Clear.Click
+
+        'Set user-provided fields to empty when clear clicked
+        tbLoanAmt.Text = ""
+        tbAnnualInterest.Text = ""
+        tbLoanTerm.Text = ""
+
+        'Don't show monthly payment and grid when clear clicked
+        loanGridView.Visible = False
+        lblMonthlyPmt.Visible = False
 
     End Sub
 
