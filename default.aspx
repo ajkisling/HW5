@@ -59,7 +59,9 @@
         <% If Not IsPostBack Then%>
         <!-- The first time the page loads. Do not display repayment grid. -->  
                
-        <h4>Welcome to my mortgage calculator.</h4>
+        <h4>
+            Please complete the fields above to have your monthly payment and loan repayment schedule calculated for you.
+        </h4>
 
 
         <% Else%> 
