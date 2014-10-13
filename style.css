@@ -1,0 +1,54 @@
+﻿body {  font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 12pt;
+        text-align:center;      }   
+
+h1   {  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+        font-size:30pt; 
+        text-align:center;
+        font-weight:bold;
+        color:#314035;    }
+
+.button {background-color: #DFDDE5;
+         font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+         font-weight:bold;  }
+
+table.center {  width:25%; 
+                margin-left:40%; 
+                margin-right:35%;
+                text-align:left;    }
+
+.tb {background-color : #DFDDE5;
+     width:150px;   }
+
+td.column1 {width:175px;}
+
+td.column2 { width:150px;}
+
+ h3   { font-size:10pt; 
+        text-align:center;
+        font-weight:bold;
+        color:#ff0000;    }
+
+ .cssgridview { width:30%; 
+                margin-left:35%; 
+                margin-right:35%;
+                border:solid 2px #525252;
+                border-collapse:collapse;
+                text-align:center;
+                font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;  
+                color:#000000;
+ }
+
+ .cssgridview td {padding:10px;
+                  border:solid 1px #c1c1c1;
+ }
+ 
+ .cssgridview th {padding:10px;
+                  color:#FFFFFF;
+                  background:#3A3240 url(./style/grd_head.png) repeat-x top;
+                  border-left:solid 1px #c1c1c1;
+ }
+
+ .cssgridview .alt {background-color:#EECAFF;
+                    color:#000000;
+ }

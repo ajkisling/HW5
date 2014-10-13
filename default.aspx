@@ -4,53 +4,62 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+
+    <title>AJ's Mortgage Payment Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="./Style.css" />
 
 </head>
 <body>
     <form id="form1" runat="server">
     <div>            
-            
-        AJ's Mortgage Repayment Calculator
-        
-        <br /><br />
-     
-        Loan Amount*:<asp:TextBox ID="tbLoanAmt" runat="server" TabIndex="1" ></asp:TextBox>
+          
+        <h1>AJ's Mortgage </h1>
+        <h1>Payment Calculator</h1>
 
-        &nbsp;&nbsp;&nbsp;
+            <h3>
+            <asp:RequiredFieldValidator ID="rfv_LoanAmount" runat="server" ErrorMessage="*Loan Amount Required" ControlToValidate="tbLoanAmt" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
+            <br />
+            <asp:RequiredFieldValidator ID="rfv_InterestRate" runat="server" ErrorMessage="*Annual Interest Rate Required" Font-Bold="True" ControlToValidate="tbAnnualInterest" ForeColor="Red"></asp:RequiredFieldValidator>
+            <br />
+            <asp:RequiredFieldValidator ID="rfv_LoanTerm" runat="server" ErrorMessage="*Loan Term Required" Font-Bold="True" ControlToValidate="tbLoanTerm" ForeColor="Red"></asp:RequiredFieldValidator>
+            </h3>
 
-        <asp:RequiredFieldValidator ID="rfv_LoanAmount" runat="server" ErrorMessage="*Loan Amount Required" ControlToValidate="tbLoanAmt" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
-                  
-        <br /><br />      
-        
-        Annual Interest Rate*: <asp:TextBox ID="tbAnnualInterest" runat="server" TabIndex="2" ></asp:TextBox>
-        
-        &nbsp;&nbsp;&nbsp;
-        
-        <asp:RequiredFieldValidator ID="rfv_InterestRate" runat="server" ErrorMessage="*Annual Interest Rate Required" Font-Bold="True" ControlToValidate="tbAnnualInterest" ForeColor="Red"></asp:RequiredFieldValidator>
+            <table class="center">
+                <tr>
+                    <td class="column1">Loan Amount *</td>
+                    <td class="column2"><asp:TextBox ID="tbLoanAmt" runat="server" TabIndex="1" CssClass="tb"></asp:TextBox>
 
-        <br /><br />
-
-        Loan Term (years)*: <asp:TextBox ID="tbLoanTerm" runat="server" TabIndex="3" ></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column1">Annual Interest Rate *</td>
+                    <td class="column2"><asp:TextBox ID="tbAnnualInterest" runat="server" TabIndex="2" CssClass="tb"></asp:TextBox>
         
-        &nbsp;&nbsp;&nbsp;
-
-        <asp:RequiredFieldValidator ID="rfv_LoanTerm" runat="server" ErrorMessage="*Loan Term Required" Font-Bold="True" ControlToValidate="tbLoanTerm" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="column1">Loan Term (years) *</td>
+                    <td class="column2"><asp:TextBox ID="tbLoanTerm" runat="server" TabIndex="3" CssClass="tb"></asp:TextBox>
         
-        <br /><br />
+                    </td>
+                </tr>
+
+            </table>
+
         * denotes required fields
         <br /><br />
 
-        <asp:Button ID="btnCalcPmt" runat="server" Text="Calculate" TabIndex="4" />
+        <asp:Button ID="btnCalcPmt" runat="server" Text="Calculate" TabIndex="4" CssClass="button" />
 
         &nbsp;&nbsp;&nbsp;
 
-        <asp:Button ID="btn_Clear" runat="server" Text="Clear" TabIndex="5" />
+        <asp:Button ID="btn_Clear" runat="server" Text="Clear" TabIndex="5" CssClass="button" />
 
         <% If Not IsPostBack Then%>
         <!-- The first time the page loads. Do not display repayment grid. -->  
                
-        <p>Welcome to my mortgage calculator.</p>
+        <h4>Welcome to my mortgage calculator.</h4>
 
 
         <% Else%> 
@@ -62,11 +71,13 @@
         
         <br /><br />
         
-        <asp:GridView ID="loanGridView" runat="server" />
+        <asp:GridView ID="loanGridView" runat="server" CssClass="cssgridview">
+            <AlternatingRowStyle CssClass="alt" />
+        </asp:GridView>
 
         <% End If%>
             
-        </div>
+    </div>
     </form>
 </body>
 </html>
